@@ -27,15 +27,15 @@ export CACHE
 export KBUILD_COMPILER_STRING
 ARCH=arm64
 export ARCH
-KBUILD_BUILD_HOST="sirnewbies"
+KBUILD_BUILD_HOST="HaKaN"
 export KBUILD_BUILD_HOST
-KBUILD_BUILD_USER="noob-server"
+KBUILD_BUILD_USER="lafactorial-server"
 export KBUILD_BUILD_USER
-DEVICE="Redmi Note 10 Pro"
+DEVICE="Redmi Note 12 Pro"
 export DEVICE
-CODENAME="sweet"
+CODENAME="sweet_k6a"
 export CODENAME
-DEFCONFIG="vendor/sweet_user_defconfig"
+DEFCONFIG="vendor/sweet2.config vendor/sdmsteppe-perf_defconfig"
 export DEFCONFIG
 COMMIT_HASH=$(git rev-parse --short HEAD)
 export COMMIT_HASH
@@ -124,7 +124,7 @@ compile() {
         exit 1
     fi
 
-    git clone --depth=1 -b master https://github.com/RooGhz720/Anykernel3.git AnyKernel
+    git clone --depth=1 -b sweetk6a https://github.com/Lafactorial/Anykernel31.git AnyKernel
     cp out/arch/arm64/boot/Image.gz-dtb AnyKernel
     cp out/arch/arm64/boot/dtbo.img AnyKernel
     cp out/arch/arm64/boot/dtb.img AnyKernel
