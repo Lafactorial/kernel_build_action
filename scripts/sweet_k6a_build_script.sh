@@ -9,8 +9,8 @@ clang() {
     rm -rf clang
     echo "Cloning clang"
     if [ ! -d "clang" ]; then
-        git clone -q https://github.com/Lafactorial/android_prebuilts_clang_host_linux-x86_clang-r510928.git --depth=1 -b 14.0 clang
-        KBUILD_COMPILER_STRING="Clang 18"
+        git clone -q https://github.com/Lafactorial/android_prebuilts_clang_host_linux-x86_clang-r416183d.gitt --depth=1 -b 11.0.0 clang
+        KBUILD_COMPILER_STRING="Clang11"
         PATH="${PWD}/clang/bin:${PATH}"
     fi
     sudo apt install -y ccache
