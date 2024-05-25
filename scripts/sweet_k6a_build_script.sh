@@ -33,7 +33,7 @@ KBUILD_BUILD_USER="lafactorial-server"
 export KBUILD_BUILD_USER
 DEVICE="Redmi Note 12 Pro"
 export DEVICE
-CODENAME="sweet_k6a"
+CODENAME="sweet"
 export CODENAME
 DEFCONFIG="vendor/sweet_user_defconfig"
 export DEFCONFIG
