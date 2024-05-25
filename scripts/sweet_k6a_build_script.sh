@@ -9,8 +9,8 @@ clang() {
     rm -rf clang
     echo "Cloning clang"
     if [ ! -d "clang" ]; then
-        git clone -q https://gitlab.com/PixelOS-Devices/playgroundtc.git --depth=1 -b 17 clang
-        KBUILD_COMPILER_STRING="Cosmic clang 17.0"
+        git clone -q https://github.com/Lafactorial/android_prebuilts_clang_host_linux-x86_clang-r510928.git --depth=1 -b 14.0 clang
+        KBUILD_COMPILER_STRING="Clang 18"
         PATH="${PWD}/clang/bin:${PATH}"
     fi
     sudo apt install -y ccache
@@ -33,7 +33,7 @@ KBUILD_BUILD_USER="lafactorial-server"
 export KBUILD_BUILD_USER
 DEVICE="Redmi Note 12 Pro"
 export DEVICE
-CODENAME="sweet"
+CODENAME="sweet_k6a"
 export CODENAME
 DEFCONFIG="vendor/sweet_user_defconfig"
 export DEFCONFIG
