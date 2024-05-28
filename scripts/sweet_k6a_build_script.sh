@@ -9,7 +9,7 @@ clang() {
     rm -rf clang
     echo "Cloning clang"
     if [ ! -d "clang" ]; then
-        git clone https://github.com/YFMARCO/android_prebuilts_clang_host_linux-x86_clang-r510928.git --depth=1 -b 14.0 clang
+        git clone -q https://github.com/Lafactorial/android_prebuilts_clang_host_linux-x86_clang-r510928.git --depth=1 -b 14.0 clang
         KBUILD_COMPILER_STRING="Clang-18"
         PATH="${PWD}/clang/bin:${PATH}"
     fi
