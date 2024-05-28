@@ -10,7 +10,7 @@ clang() {
     echo "Cloning clang"
     if [ ! -d "clang" ]; then
         git clone -q https://github.com/Lafactorial/android_prebuilts_clang_host_linux-x86_clang-r510928.git --depth=1 -b 14 "$HOME"/clang
-        KBUILD_COMPILER_STRING="Clang-18"
+        KBUILD_COMPILER_STRING=$("$HOME"/clang/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//')
         PATH="$HOME/clang/bin:$PATH"
     fi
     sudo apt install -y ccache
@@ -35,8 +35,8 @@ DEVICE="Redmi Note 12 Pro"
 export DEVICE
 CODENAME="sweet_k6a"
 export CODENAME
-DEFCONFIG="vendor/sweetk6a.config"
-DEFCONFIG="vendor/sdmsteppe-perf_defconfig"
+DEFCONFIG_DEVICE="vendor/sweetk6a.config"
+DEFCONFIG_COMMON="vendor/sdmsteppe-perf_defconfig"
 export DEFCONFIG
 COMMIT_HASH=$(git rev-parse --short HEAD)
 export COMMIT_HASH
@@ -103,7 +103,9 @@ compile() {
         rm -rf out && mkdir -p out
     fi
 
-    make O=out ARCH="${ARCH}" "${DEFCONFIG}"
+    make clean && make mrproper
+    make "$DEFCONFIG_COMMON" O=out
+    make "$DEFCONFIG_DEVICE" O=out
     make -j"${PROCS}" O=out \
         ARCH=arm64 \
         LLVM=1 \
@@ -115,8 +117,9 @@ compile() {
         OBJDUMP=llvm-objdump \
         STRIP=llvm-strip \
         CC=clang \
-        CROSS_COMPILE=aarch64-linux-gnu- \
-        CROSS_COMPILE_ARM32=arm-linux-gnueabi
+        CLANG_TRIPLE=aarch64-linux-gnu- \
+        CROSS_COMPILE=aarch64-linux-android- \
+        CROSS_COMPILE_ARM32=arm-linux-androideabi-  2>&1 | tee error.log
 
     if ! [ -a "$IMAGE" ]; then
         finderr
