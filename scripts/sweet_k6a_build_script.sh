@@ -35,8 +35,8 @@ DEVICE="Redmi Note 12 Pro"
 export DEVICE
 CODENAME="sweet_k6a"
 export CODENAME
-DEFCONFIG_DEVICE="vendor/sweetk6a.config"
-DEFCONFIG_COMMON="vendor/sdmsteppe-perf_defconfig"
+DEFCONFIG="vendor/sweetk6a.config"
+DEFCONFIG="vendor/sdmsteppe-perf_defconfig"
 export DEFCONFIG
 COMMIT_HASH=$(git rev-parse --short HEAD)
 export COMMIT_HASH
@@ -103,9 +103,7 @@ compile() {
         rm -rf out && mkdir -p out
     fi
 
-    make clean && make mrproper
-    make "$DEFCONFIG_COMMON" O=out
-    make "$DEFCONFIG_DEVICE" O=out
+    make O=out ARCH="${ARCH}" "${DEFCONFIG}"
     make -j"${PROCS}" O=out \
         ARCH=arm64 \
         LLVM=1 \
