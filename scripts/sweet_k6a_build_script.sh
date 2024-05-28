@@ -35,7 +35,8 @@ DEVICE="Redmi Note 12 Pro"
 export DEVICE
 CODENAME="sweet_k6a"
 export CODENAME
-DEFCONFIG="vendor/sweetk6a.config" "vendor/sdmsteppe-perf_defconfig"
+DEFCONFIG="vendor/sweetk6a.config"
+DEFCONFIG="vendor/sdmsteppe-perf_defconfig"
 export DEFCONFIG
 COMMIT_HASH=$(git rev-parse --short HEAD)
 export COMMIT_HASH
