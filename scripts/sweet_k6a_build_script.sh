@@ -9,9 +9,12 @@ clang() {
     rm -rf clang
     echo "Cloning clang"
     if [ ! -d "clang" ]; then
-        git clone -q https://github.com/Lafactorial/android_prebuilts_clang_host_linux-x86_clang-r510928.git --depth=1 -b 14 "$HOME"/clang
-        KBUILD_COMPILER_STRING=$("$HOME"/clang/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//')
-        PATH="$HOME/clang/bin:$PATH"
+    	mkdir clang
+     	cd clang
+        wget https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/main/clang-r522817.tar.gz
+	tar -xvf *
+        KBUILD_COMPILER_STRING="clangggg"
+        PATH="${PWD}/clang/bin:${PATH}"
     fi
     sudo apt install -y ccache
     echo "Done"
@@ -105,14 +108,6 @@ compile() {
     make O=out ARCH="${ARCH}" "${DEFCONFIG}"
     make -j"${PROCS}" O=out \
         ARCH=arm64 \
-        LLVM=1 \
-        LLVM_IAS=1 \
-        AR=llvm-ar \
-        NM=llvm-nm \
-        LD=ld.lld \
-        OBJCOPY=llvm-objcopy \
-        OBJDUMP=llvm-objdump \
-        STRIP=llvm-strip \
         CC=clang \
         CLANG_TRIPLE=aarch64-linux-gnu- \
         CROSS_COMPILE=aarch64-linux-android- \
