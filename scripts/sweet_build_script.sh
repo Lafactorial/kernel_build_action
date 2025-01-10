@@ -21,7 +21,7 @@ clang() {
 }
 
 AnyKernel="https://github.com/itsshashanksp/AnyKernel3.git"
-AnyKernelbranch="master"
+AnyKernelbranch="sweetk6a"
 
 export IMG="$PWD"/out/arch/arm64/boot/Image.gz
 export dtbo="$PWD"/out/arch/arm64/boot/dtbo.img
@@ -35,18 +35,16 @@ export CACHE
 export KBUILD_COMPILER_STRING
 ARCH=arm64
 export ARCH
-KBUILD_BUILD_HOST="romi.yusna"
+KBUILD_BUILD_HOST="lafactorial"
 export KBUILD_BUILD_HOST
-KBUILD_BUILD_USER="orion-server"
+KBUILD_BUILD_USER="lafactorial-server"
 export KBUILD_BUILD_USER
-DEVICE="Xiaomi Redmi Note 10 Pro"
+DEVICE="Xiaomi Redmi Note 12 Pro"
 export DEVICE
 CODENAME="sweet"
 export CODENAME
 # DEFCONFIG=""
-DEFCONFIG_COMMON="vendor/sdmsteppe-perf_defconfig"
-DEFCONFIG_DEVICE="vendor/sweet.config"
-export DEFCONFIG_COMMON
+DEFCONFIG_DEVICE="sweet_defconfig"
 export DEFCONFIG_DEVICE
 COMMIT_HASH=$(git rev-parse --short HEAD)
 export COMMIT_HASH
@@ -129,7 +127,6 @@ compile() {
     fi
 
     make O=out ARCH="${ARCH}"
-    make "$DEFCONFIG_COMMON" O=out
     make "$DEFCONFIG_DEVICE" O=out
     make -j$(nproc --all) O=out \
                               ARCH=arm64 \
