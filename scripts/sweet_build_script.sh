@@ -11,7 +11,7 @@ clang() {
     if [ ! -d "clang" ]; then
     	mkdir clang
      	cd clang
-        git clone --depth=1 https://gitlab.com/itsshashanksp/android_prebuilts_clang_host_linux-x86_clang-r530567.git  "$HOME"/clang
+        git clone --depth=1 https://gitlab.com/itsshashanksp/android_prebuilts_clang_host_linux-x86_clang-r530567  "$HOME"/clang
         KBUILD_COMPILER_STRING="clangggg"
         PATH="${PWD}/clang/bin:${PATH}"
     fi
