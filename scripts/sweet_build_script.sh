@@ -140,8 +140,8 @@ compile() {
                               STRIP=llvm-strip \
                               CC=clang \
                               CLANG_TRIPLE=aarch64-linux-gnu- \
-                              CROSS_COMPILE=aarch64-linux-android- \
-                              CROSS_COMPILE_ARM32=arm-linux-androideabi-  2>&1 | tee error.log
+                              CROSS_COMPILE=aarch64-linux-gnu- \
+                              CROSS_COMPILE_COMPAT=arm-linux-gnueabi-  2>&1 | tee error.log
 
     if [ -f "$IMG" ]; then
                 echo -e "$green << Build completed in $(($Diff / 60)) minutes and $(($Diff % 60)) seconds >> \n $white"
